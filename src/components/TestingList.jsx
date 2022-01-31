@@ -1,9 +1,37 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Table from 'react-bootstrap/Table';
 import { TestingItem } from "./TestingItem";
 
 
-export function TestingList({testings}){
+
+export function TestingList(){
+    const URL_API = '';
+    const URL_TOKEN = '';
+    const [testings, setTestings] = useState(null);
+
+    var obj = {  
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': URL_TOKEN
+        }
+      }
+
+    async function fetchTestingData() {
+        const response = await fetch(URL_API, obj);
+        setTestings(await response.json());
+    }
+
+    useEffect(() => {
+        fetchTestingData();
+      }, []);
+    
+      if (!testings) {
+        return "loading...";
+    }
+
+
     return(
         <Table striped bordered hover>
             <thead>
