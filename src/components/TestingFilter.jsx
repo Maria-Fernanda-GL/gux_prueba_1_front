@@ -2,7 +2,7 @@ import React, {useState}  from "react";
 import { Form, Button } from "react-bootstrap";
 
 
-export function TestingFilter(){
+export function TestingFilter(props){
     const default_filter = {
         rol: '',
         patient: '',
@@ -58,7 +58,7 @@ export function TestingFilter(){
                 Limpiar
             </Button>
 
-            <Button variant="primary" >
+            <Button variant="primary" onClick= { () => props.fetchTestingData(filter)}>
                 Buscar
             </Button>
         </Form>
